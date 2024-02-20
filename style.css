@@ -1,3 +1,52 @@
 #root {
   color: red;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  gap: 1em; /* Gap between episode cards */
+  margin: 50px 80px;
+}
+
+.episode-image-container {
+  text-align: center; /* Center the image horizontally */
+}
+.episode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 30px;
+  background-color: rgb(240, 236, 236);
+}
+
+.episode-image {
+  display: block;
+  margin: 30px 30px;
+  max-width: 100%;
+}
+
+.episode-name {
+  display: block;
+  align-self: stretch;
+  background-color: white;
+  padding: 20px 10px; /* Optional: Add padding for better appearance */
+  border: 1px solid #ccc; /* Add a border around the episode name */
+  border-radius: 8px;
+  text-align: center; /* Center the text horizontally */
+}
+/* Add any other styling rules as needed */
+footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  margin: 20px;
+}
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
