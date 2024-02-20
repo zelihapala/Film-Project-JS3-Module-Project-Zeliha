@@ -1,10 +1,54 @@
-// Generate episode code
+// Function to fetch episodes data
+function fetchEpisodesData() {
+  return fetch("https://api.tvmaze.com/shows/82/episodes").then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  });
+}
+
+// Function to generate episode code
 function generateEpisodeCode(episode) {
   return `S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
 }
 
-const allEpisodes = getAllEpisodes();
-const root = document.getElementById("root");
+// Variable to store fetched episodes data
+let fetchedEpisodes = null;
+
+// Function to handle fetching and displaying episodes
+function fetchAndDisplayEpisodes() {
+  // Show loading message
+  root.innerHTML = "<p>Loading episodes...</p>";
+
+  // Fetch episodes data
+  fetchEpisodesData()
+    .then((episodes) => {
+      // Store fetched episodes data
+      fetchedEpisodes = episodes;
+      // Populate dropdown with episode options
+      populateDropdown(episodes);
+      // Display episodes
+      displayEpisodes(episodes);
+    })
+    .catch((error) => {
+      // Notify user if an error occurs
+      root.innerHTML = "<p>An error occurred while loading episodes. Please try again later.</p>";
+      console.error("Error fetching episodes:", error);
+    });
+}
+
+// Function to populate dropdown with episode options
+function populateDropdown(episodes) {
+  const selectElement = document.getElementById("episode-select");
+  selectElement.innerHTML = `<option value="">Episodes</option>`;
+  episodes.forEach((episode) => {
+    const option = document.createElement("option");
+    option.value = episode.id;
+    option.textContent = `${generateEpisodeCode(episode)} - ${episode.name}`;
+    selectElement.appendChild(option);
+  });
+}
 
 // Create search container
 const searchContainer = document.createElement("div");
@@ -13,14 +57,18 @@ searchContainer.innerHTML = `
   <span id="episode-count"></span>
   <select id="episode-select">
     <option value="">Episodes</option>
-    ${allEpisodes.map((episode) => `<option value="${episode.id}">${generateEpisodeCode(episode)} - ${episode.name}</option>`).join("")}
   </select>
 `;
 document.body.insertBefore(searchContainer, root);
 
+// Initialize
+fetchAndDisplayEpisodes();
+
 // Clear dropdown when search input is clicked
 document.getElementById("search-input").addEventListener("click", () => {
   document.getElementById("episode-select").value = "";
+  // Fetch and display all episodes
+  fetchAndDisplayEpisodes();
 });
 
 // Clear dropdown when clicking anywhere else on the screen
@@ -43,18 +91,25 @@ document.getElementById("episode-select").addEventListener("change", () => {
 // Show single episode or all episodes
 document.getElementById("episode-select").addEventListener("change", () => {
   const selectedValue = document.getElementById("episode-select").value;
-  const selectedEpisode = allEpisodes.find((episode) => episode.id === parseInt(selectedValue));
-  displayEpisodes(selectedValue === "" ? allEpisodes : [selectedEpisode]);
+  if (selectedValue === "") {
+    displayEpisodes(fetchedEpisodes);
+  } else {
+    const selectedEpisode = fetchedEpisodes.find((episode) => episode.id === parseInt(selectedValue));
+    displayEpisodes([selectedEpisode]);
+  }
 });
 
 // Filter episodes
 function filterEpisodes() {
   const searchTerm = document.getElementById("search-input").value.toLowerCase();
-  const filteredEpisodes = allEpisodes.filter((episode) => episode.name.toLowerCase().includes(searchTerm) || episode.summary.toLowerCase().includes(searchTerm));
+  const filteredEpisodes = fetchedEpisodes.filter((episode) => episode.name.toLowerCase().includes(searchTerm) || episode.summary.toLowerCase().includes(searchTerm));
   displayEpisodes(filteredEpisodes);
 }
 
-// Display episodes
+// Add event listener for input on search
+document.getElementById("search-input").addEventListener("input", filterEpisodes);
+
+// Function to display episodes
 function displayEpisodes(episodes) {
   root.innerHTML = "";
   episodes.forEach((episode) => {
@@ -80,9 +135,3 @@ function addFooter() {
 }
 
 addFooter();
-
-// Initialize
-displayEpisodes(allEpisodes);
-
-// Add event listener for input on search
-document.getElementById("search-input").addEventListener("input", filterEpisodes);
