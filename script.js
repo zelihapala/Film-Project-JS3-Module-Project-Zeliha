@@ -18,7 +18,7 @@ searchContainer.innerHTML = `
 `;
 document.body.insertBefore(searchContainer, root);
 
-// Clear dropdown place holder when search input is clicked
+// Clear dropdown when search input is clicked
 document.getElementById("search-input").addEventListener("click", () => {
   document.getElementById("episode-select").value = "";
 });
@@ -68,6 +68,7 @@ function displayEpisodes(episodes) {
   document.getElementById("episode-count").textContent = `Total Episodes: ${episodes.length}`;
 }
 
+// Add footer
 function addFooter() {
   const footer = document.querySelector("footer");
   const tvmazeLink = document.createElement("a");
@@ -79,7 +80,6 @@ function addFooter() {
 }
 
 addFooter();
-
 
 // Initialize
 displayEpisodes(allEpisodes);
