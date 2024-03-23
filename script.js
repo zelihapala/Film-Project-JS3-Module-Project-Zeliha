@@ -115,9 +115,10 @@ function displayPage(episodes) {
       const template = document
         .getElementById("episode-template")
         .content.cloneNode(true);
-      template.querySelector(".episode-name").textContent = episode.name;
-      template.querySelector(".episode-code").textContent =
-        generateEpisodeCode(episode); // Populate episode code
+      template.querySelector(".episode-name").textContent = `${
+        episode.name
+      } - ${generateEpisodeCode(episode)}`;
+
       template.querySelector(".episode-image").src = episode.image.medium;
       template.querySelector(".episode-image").alt = episode.name;
       template.querySelector(".episode-summary").innerHTML = episode.summary;
