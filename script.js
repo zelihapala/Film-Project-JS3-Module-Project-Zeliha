@@ -35,6 +35,7 @@ function displayPage(episodes) {
   }
 
   const searchContainer = document.createElement("div");
+  searchContainer.id = "navbar";
   searchContainer.innerHTML = `
   <input type="text" id="search-input" placeholder="Search episodes...">
   <span id="episode-count"></span>
@@ -46,10 +47,7 @@ function displayPage(episodes) {
   render(episodes);
 
   document.getElementById("search-input").addEventListener("input", () => {
-    const inputValue = document
-      .getElementById("search-input")
-      .value.trim()
-      .toLowerCase();
+    const inputValue = document.getElementById("search-input").value.trim().toLowerCase();
     if (inputValue === "") {
       render(episodes);
     }
@@ -94,9 +92,7 @@ function displayPage(episodes) {
   });
 
   function filterEpisodes() {
-    const searchTerm = document
-      .getElementById("search-input")
-      .value.toLowerCase();
+    const searchTerm = document.getElementById("search-input").value.toLowerCase();
     const filteredEpisodes = fetchedEpisodes.filter(
       (episode) =>
         episode.name.toLowerCase().includes(searchTerm) ||
@@ -104,17 +100,13 @@ function displayPage(episodes) {
     );
     displayEpisodes(filteredEpisodes);
   }
-  document
-    .getElementById("search-input")
-    .addEventListener("input", filterEpisodes);
+  document.getElementById("search-input").addEventListener("input", filterEpisodes);
 
   // Function to display episodes
   function displayEpisodes(episodes) {
     root.innerHTML = "";
     episodes.forEach((episode) => {
-      const template = document
-        .getElementById("episode-template")
-        .content.cloneNode(true);
+      const template = document.getElementById("episode-template").content.cloneNode(true);
       template.querySelector(".episode-name").textContent = `${
         episode.name
       } - ${generateEpisodeCode(episode)}`;
@@ -124,9 +116,7 @@ function displayPage(episodes) {
       template.querySelector(".episode-summary").innerHTML = episode.summary;
       root.appendChild(template);
     });
-    document.getElementById(
-      "episode-count"
-    ).textContent = `Total Episodes: ${episodes.length}`;
+    document.getElementById("episode-count").textContent = `Total Episodes: ${episodes.length}`;
   }
 
   // Add footer
