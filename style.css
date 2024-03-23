@@ -84,8 +84,6 @@ footer a:hover {
 }
 
 #episode-select {
-  margin-top: 25px;
-  margin-left: 25px;
   padding: 12px 20px;
   border: 2px solid #048080;
   border-radius: 18px;
@@ -98,8 +96,6 @@ footer a:hover {
 }
 /* Style for the search input */
 #search-input {
-  margin-top: 25px;
-  margin-left: 25px;
   padding: 12px 20px;
   border: 2px solid #048080;
   border-radius: 18px;
@@ -116,7 +112,9 @@ footer a:hover {
 }
 
 #navbar {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
