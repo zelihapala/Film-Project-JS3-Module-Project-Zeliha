@@ -1,46 +1,64 @@
 #root {
+  width: 90%;
   color: rgb(54, 54, 54);
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
-  gap: 1.5em; /* Gap between episode cards */
-  margin: 50px 80px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  gap: 15px;
+  margin: 30px auto;
 }
 
 .episode-image-container {
-  text-align: center; /* Center the image horizontally */
+  height: 200px;
+  border: 1px solid #c7c4c4;
+
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .episode-card {
+  max-width: 500px;
+  padding: 5px;
+  margin-bottom: 15px;
   border: 2px solid #c7c6c6;
   border-radius: 12px;
-  padding: 35px;
   background-color: #dadada;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 30px;
+  align-items: stretch;
+  gap: 1px;
 }
 
 p {
   margin: 0px;
 }
+.episode-summary {
+  padding: 3px;
+}
 
 .episode-image {
-  display: block;
-  max-width: 100%;
-  border: 2px solid #c7c4c4;
-  border-radius: 6px;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .episode-name {
+  width: auto;
   background-color: #ffffff;
-  padding: 15px 20px;
-  margin: 0 20px;
+  padding: 5px;
+  padding-left: 20px;
+
+  margin: 0px;
   border: 1px solid #b1afaf;
-  border-radius: 8px;
-  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  text-align: left;
   font-size: 18px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 footer {
@@ -48,7 +66,7 @@ footer {
   padding: 20px;
   text-align: center;
 
-  margin-top: 50px; /* Adjust margin as needed */
+  margin-top: 50px;
 }
 
 footer a {
@@ -60,42 +78,42 @@ footer a:hover {
   text-decoration: underline;
 }
 
-
-/* Style for the episode count */
 #episode-count {
   margin-left: 10px;
   font-size: 14px;
   color: #666;
 }
 
-#episode-select {
-  margin-top: 25px;
-  margin-left: 25px;
-  padding: 12px 20px;
-  border: 2px solid #048080;
-  border-radius: 18px;
-  font-size: 14px;
-  width: 350px;
-  background-color: #ffffff;
-  outline: none;
-  transition: border-color 0.3s ease;
-  text-align: start;
-}
-/* Style for the search input */
-#search-input {
-  margin-top: 25px;
-  margin-left: 25px;
-  padding: 12px 20px;
-  border: 2px solid #048080;
-  border-radius: 18px;
-  font-size: 16px;
-  width: 250px;
-  background-color: #ffffff;
-  outline: none;
-  transition: border-color 0.3s ease;
-  text-align: center;
-}
-
 #search-input:focus {
   border: 2px solid #048080;
+}
+
+#navbar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+#show-select,
+#episode-select,
+#search-input {
+  padding: 12px 20px;
+  border: 2px solid #048080;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 300px;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#show-select,
+#episode-select {
+  text-align: start;
+}
+
+#search-input {
+  text-align: center;
+  font-size: 14px;
 }
