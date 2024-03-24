@@ -2,9 +2,9 @@
   width: 90%;
   color: rgb(54, 54, 54);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Three columns with equal width */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-  gap: 15px; /* Gap between episode cards */
+  gap: 15px;
   margin: 30px auto;
 }
 
@@ -17,8 +17,9 @@
 }
 
 .episode-card {
+  max-width: 500px;
   padding: 5px;
-margin-bottom: 15px;
+  margin-bottom: 15px;
   border: 2px solid #c7c6c6;
   border-radius: 12px;
   background-color: #dadada;
@@ -38,6 +39,7 @@ p {
 .episode-image {
   height: 100%;
   width: 100%;
+  max-width: 500px;
   object-fit: cover;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -56,7 +58,7 @@ p {
 
   text-align: left;
   font-size: 18px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 footer {
@@ -64,7 +66,7 @@ footer {
   padding: 20px;
   text-align: center;
 
-  margin-top: 50px; /* Adjust margin as needed */
+  margin-top: 50px;
 }
 
 footer a {
@@ -76,35 +78,10 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Style for the episode count */
 #episode-count {
   margin-left: 10px;
   font-size: 14px;
   color: #666;
-}
-
-#episode-select {
-  padding: 12px 20px;
-  border: 2px solid #048080;
-  border-radius: 18px;
-  font-size: 14px;
-  width: 350px;
-  background-color: #ffffff;
-  outline: none;
-  transition: border-color 0.3s ease;
-  text-align: start;
-}
-/* Style for the search input */
-#search-input {
-  padding: 12px 20px;
-  border: 2px solid #048080;
-  border-radius: 18px;
-  font-size: 16px;
-  width: 250px;
-  background-color: #ffffff;
-  outline: none;
-  transition: border-color 0.3s ease;
-  text-align: center;
 }
 
 #search-input:focus {
@@ -117,4 +94,26 @@ footer a:hover {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+#show-select,
+#episode-select,
+#search-input {
+  padding: 12px 20px;
+  border: 2px solid #048080;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 300px;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#show-select,
+#episode-select {
+  text-align: start;
+}
+
+#search-input {
+  text-align: center;
+  font-size: 14px;
 }
