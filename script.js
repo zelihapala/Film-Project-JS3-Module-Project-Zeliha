@@ -17,23 +17,64 @@ function fetchShows() {
       .then((data) => {
         cache.shows = data;
         populateShowDropdown(cache.shows);
-        displayShows(cache.shows);
+        displayAllShows(cache.shows);
       })
       .catch((error) => console.error("Error fetching shows:", error));
   }
 }
-function displayShows(shows) {
-  document.getElementById("root").innerHTML = "";
-  shows.map((show) => {
-    const imgShow = document.createElement("img");
-    imgShow.src = show.image.medium ?? "";
-    document.getElementById("root").append(imgShow);
-  });
+
+function displayAllShows(shows) {
+  const root = document.getElementById("root");
+  root.innerHTML = "";
+  shows.map((show) => displayShows(show));
+}
+
+/// Displaying shows
+function displayShows(show) {
+  const root = document.getElementById("root");
+
+  const showImg = document.createElement("img");
+  showImg.src = show.image.medium ?? "";
+  showImg.alt = show.name;
+
+  const showName = document.createElement("h3");
+  showName.innerHTML = "Show Name: " + show.name;
+
+  const showSummary = document.createElement("p");
+  showSummary.innerHTML = "Summary: " + show.summary;
+
+  const cardShow = document.createElement("div");
+  cardShow.className = "mainShowCard";
+
+  const cardShowInfo = document.createElement("div");
+  cardShowInfo.className = "mainShowCardInfo";
+
+  const showStatus = document.createElement("p");
+  showStatus.innerHTML = "Status: " + show.status;
+
+  const showGenres = document.createElement("p");
+  showGenres.innerHTML = "Genres: " + show.genres.join(", ");
+
+  const showRating = document.createElement("p");
+  showRating.innerHTML = "Average Rating: " + show.rating.average;
+
+  const showRuntime = document.createElement("p");
+  showRuntime.innerHTML = "Runtime: " + show.runtime;
+
+  // cardShowInfo div inside main div
+  cardShowInfo.append(showStatus, showGenres, showRating, showRuntime);
+
+  //  main card div
+  cardShow.append(showImg, showName, showSummary, cardShowInfo);
+
+  // Append the main card to the root element
+  root.append(cardShow);
 }
 
 // Populate show dropdown
 function populateShowDropdown(shows) {
   const showSelect = document.getElementById("show-select");
+  showSelect.innerHTML = "<option value='default'>All Shows</option>";
 
   shows.sort((a, b) =>
     a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
@@ -45,7 +86,6 @@ function populateShowDropdown(shows) {
     option.textContent = show.name;
     showSelect.appendChild(option);
   });
-  showSelect;
 }
 
 // Fetch episodes data
@@ -59,7 +99,7 @@ function fetchEpisodesData(showId) {
       .then((data) => {
         cache.episodes[showId] = data;
         fetchedEpisodes = data;
-        displayEpisodes(cache.episodes[showId]);
+        displayEpisodes(cache.episodes[showId], showId);
         populateDropdown(data);
       })
       .catch((error) => console.error("Error fetching episodes:", error));
@@ -74,10 +114,14 @@ function generateEpisodeCode(episode) {
 }
 
 // Display episodes
-function displayEpisodes(episodes) {
+function displayEpisodes(episodes, id) {
   const root = document.getElementById("root");
   root.innerHTML = "";
 
+  if (cache.shows && id) {
+    let myShow = cache.shows.filter((show) => show.id == id);
+    displayShows(...myShow);
+  }
   episodes.forEach((episode) => {
     const template = document
       .getElementById("episode-template")
@@ -109,15 +153,13 @@ function displayPage() {
   searchContainer.id = "navbar";
   searchContainer.innerHTML = `
     <select id="show-select">
-      <option value="default">Select a show</option>
+      <option value="default">All Shows</option>
     </select>
     <select id="episode-select">
       <option value="">Episodes</option>
     </select>
     <span id="episode-count"></span>
     <input type="text" id="search-input" placeholder="Search episodes...">
-    
-    
   `;
   document.body.insertBefore(searchContainer, root);
 
@@ -137,10 +179,11 @@ function displayPage() {
     dropdown.value = "";
     document.getElementById("search-input").value = "";
     if (event.target.value === "default") {
-      displayShows(cache.shows);
+      displayAllShows(cache.shows);
     } else {
       dropdown.setAttribute("placeholder", "Episodes");
-      displayEpisodes(fetchedEpisodes || []);
+
+      fetchEpisodesData(event.target.value || []);
     }
   });
   document.getElementById("episode-select").addEventListener("change", () => {
@@ -154,14 +197,6 @@ function displayPage() {
       displayEpisodes([selectedEpisode]);
     }
     document.getElementById("search-input").value = "";
-  });
-  document.getElementById("show-select").addEventListener("change", () => {
-    const selectedShowId = document.getElementById("show-select").value;
-    if (selectedShowId) {
-      fetchEpisodesData(selectedShowId);
-    } else {
-      displayEpisodes([]);
-    }
   });
 }
 

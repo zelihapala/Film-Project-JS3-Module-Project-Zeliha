@@ -117,3 +117,53 @@ footer a:hover {
   text-align: center;
   font-size: 14px;
 }
+
+/* .shortenSummary {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+} */
+
+.shortenSummary:hover {
+  overflow: auto;
+  display: block;
+}
+
+.mainShowCard {
+  grid-column: 1/-1;
+
+  padding: 18px;
+  margin-bottom: 15px;
+  border: 2px solid #c7c6c6;
+  border-radius: 12px;
+  background-color: #dadada;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 5px;
+}
+
+.mainShowCard img {
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.mainShowCardInfo {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 50ch;
+  height: fit-content;
+  padding: 1rem 2rem;
+  background-color: #eff0f1;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #03030363;
+}
