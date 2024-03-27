@@ -22,7 +22,7 @@
   margin-bottom: 15px;
   border: 2px solid #c7c6c6;
   border-radius: 12px;
-  background-color: #dadada;
+  background-color: #eeeded;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -65,8 +65,8 @@ footer {
   background-color: #048080;
   padding: 20px;
   text-align: center;
-
-  margin-top: 50px;
+  border-radius: 8px;
+  margin: 10px;
 }
 
 footer a {
@@ -93,7 +93,7 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 #show-select,
 #episode-select,
@@ -118,14 +118,6 @@ footer a:hover {
   font-size: 14px;
 }
 
-/* .shortenSummary {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-} */
-
 .shortenSummary:hover {
   overflow: auto;
   display: block;
@@ -133,9 +125,9 @@ footer a:hover {
 
 .mainShowCard {
   grid-column: 1/-1;
-
-  padding: 18px;
-  margin-bottom: 15px;
+  padding: 10px;
+  margin-top: rem;
+  margin-bottom: 10px;
   border: 2px solid #c7c6c6;
   border-radius: 12px;
   background-color: #dadada;
@@ -143,26 +135,85 @@ footer a:hover {
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  gap: 5px;
+  gap: 1rem;
+}
+.cardInfoInner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  gap: 3rem;
 }
 
 .mainShowCard img {
-  height: 100%;
-  width: 100%;
+  height: 420px;
+  width: px;
   max-width: 500px;
   object-fit: cover;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 .mainShowCardInfo {
-  margin: 20px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: start;
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem 30px;
+  box-shadow: rgb(0, 0, 0, 0.2) 3px 3px 6px 0px inset;
+  background-color: rgb(241, 239, 239);
+  color: rgb(4, 26, 97);
+  border-radius: 18px;
+  gap: 18px;
+}
+
+.mainShowCardInfo p {
+  width: 30ch;
+}
+.cardInfo h2 {
+  width: fit-content;
+  padding: 1rem 30px;
+  box-shadow: rgb(0, 0, 0, 0.2) 3px 3px 6px 0px inset;
+  background-color: rgb(241, 239, 239);
+  color: rgb(4, 26, 97);
+  border-radius: 18px;
+  gap: 18px;
+}
+
+#back-to-all {
+  padding: 12px;
+  border: 2px solid #fdfdfd;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 90px;
+  background-color: #048080;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease;
   text-align: center;
-  width: 6Sp
-  padding: 1rem 2rem;
-  background-color: #eff0f1;
-  border-radius: 5px;
-  box-shadow: 1px 1px 5px #03030363;
+  display: inline-block;
+}
+#back-to-all:hover {
+  background-color: #09b9b9; /* Change background color on hover */
+  border-color: #929294; /* Change border color on hover */
+  border-width: 2px; /* Change border width on hover */
+}
+
+.header-title {
+  background-image: url("./levels/example-screenshots/films.png");
+  background-position: 10%;
+  background-repeat: no-repeat;
+  background-color: #048080;
+  color: #ffffff;
+  padding: 50px;
+  text-align: center;
+  height: 7rem;
+  margin-top: 20px;
+  font-size: 80px;
+  border-radius: 8px;
 }
