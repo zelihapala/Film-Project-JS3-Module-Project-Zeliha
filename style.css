@@ -199,9 +199,9 @@ footer a:hover {
   display: inline-block;
 }
 #back-to-all:hover {
-  background-color: #09b9b9; /* Change background color on hover */
-  border-color: #929294; /* Change border color on hover */
-  border-width: 2px; /* Change border width on hover */
+  background-color: #09b9b9;
+  border-color: #929294;
+  border-width: 2px;
 }
 
 .header-title {
