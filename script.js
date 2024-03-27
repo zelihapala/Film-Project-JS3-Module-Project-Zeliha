@@ -37,7 +37,7 @@ function displayShows(show) {
   showImg.src = show.image.medium ?? "";
   showImg.alt = show.name;
 
-  const showName = document.createElement("h3");
+  const showName = document.createElement("h2");
   showName.innerHTML = "Show Name: " + show.name;
 
   const showSummary = document.createElement("p");
@@ -45,6 +45,12 @@ function displayShows(show) {
 
   const cardShow = document.createElement("div");
   cardShow.className = "mainShowCard";
+
+  const cardInfo = document.createElement("div");
+  cardInfo.className = "cardInfo";
+
+  const cardInfoInner = document.createElement("div");
+  cardInfoInner.className = "cardInfoInner";
 
   const cardShowInfo = document.createElement("div");
   cardShowInfo.className = "mainShowCardInfo";
@@ -61,13 +67,11 @@ function displayShows(show) {
   const showRuntime = document.createElement("p");
   showRuntime.innerHTML = "Runtime: " + show.runtime;
 
-  // cardShowInfo div inside main div
   cardShowInfo.append(showStatus, showGenres, showRating, showRuntime);
+  cardInfoInner.append(showSummary, cardShowInfo);
+  cardInfo.append(showName, cardInfoInner);
+  cardShow.append(showImg, cardInfo);
 
-  //  main card div
-  cardShow.append(showImg, showName, showSummary, cardShowInfo);
-
-  // Append the main card to the root element
   root.append(cardShow);
 }
 
@@ -152,14 +156,15 @@ function displayPage() {
   const searchContainer = document.createElement("div");
   searchContainer.id = "navbar";
   searchContainer.innerHTML = `
+  <button id="back-to-all" style="display:none" >Back to Shows</button>
     <select id="show-select">
       <option value="default">All Shows</option>
     </select>
-    <select id="episode-select">
+    <select id="episode-select" style="display:none">
       <option value="">Episodes</option>
     </select>
-    <span id="episode-count"></span>
-    <input type="text" id="search-input" placeholder="Search episodes...">
+    <span id="episode-count" style="display:none"></span>
+    <input type="text" id="search-input" style="display:none" placeholder="Search episodes...">
   `;
   document.body.insertBefore(searchContainer, root);
 
@@ -184,6 +189,11 @@ function displayPage() {
       dropdown.setAttribute("placeholder", "Episodes");
 
       fetchEpisodesData(event.target.value || []);
+      document.getElementById("show-select").style.display = "none";
+      document.getElementById("back-to-all").style.display = "inline";
+      document.getElementById("episode-select").style.display = "inline";
+      document.getElementById("episode-count").style.display = "inline";
+      document.getElementById("search-input").style.display = "inline";
     }
   });
   document.getElementById("episode-select").addEventListener("change", () => {
@@ -197,6 +207,16 @@ function displayPage() {
       displayEpisodes([selectedEpisode]);
     }
     document.getElementById("search-input").value = "";
+  });
+  document.getElementById("back-to-all").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("back-to-all").style.display = "none";
+    document.getElementById("show-select").style.display = "inline";
+    document.getElementById("show-select").value = "default";
+    document.getElementById("episode-select").style.display = "none";
+    document.getElementById("episode-count").style.display = "none";
+    document.getElementById("search-input").style.display = "none";
+    displayAllShows(cache.shows);
   });
 }
 
