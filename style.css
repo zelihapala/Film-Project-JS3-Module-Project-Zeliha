@@ -1,3 +1,219 @@
 #root {
-  color: red;
+  width: 90%;
+  color: rgb(54, 54, 54);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  gap: 15px;
+  margin: 30px auto;
+}
+
+.episode-image-container {
+  height: 200px;
+  border: 1px solid #c7c4c4;
+
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.episode-card {
+  max-width: 500px;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 2px solid #c7c6c6;
+  border-radius: 12px;
+  background-color: #eeeded;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1px;
+}
+
+p {
+  margin: 0px;
+}
+.episode-summary {
+  padding: 3px;
+}
+
+.episode-image {
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.episode-name {
+  width: auto;
+  background-color: #ffffff;
+  padding: 5px;
+  padding-left: 20px;
+
+  margin: 0px;
+  border: 1px solid #b1afaf;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  text-align: left;
+  font-size: 18px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  background-color: #048080;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+#episode-count {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+#search-input:focus {
+  border: 2px solid #048080;
+}
+
+#navbar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#show-select,
+#episode-select,
+#search-input {
+  padding: 12px 20px;
+  border: 2px solid #048080;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 300px;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#show-select,
+#episode-select {
+  text-align: start;
+}
+
+#search-input {
+  text-align: center;
+  font-size: 14px;
+}
+
+.shortenSummary:hover {
+  overflow: auto;
+  display: block;
+}
+
+.mainShowCard {
+  grid-column: 1/-1;
+  padding: 10px;
+  margin-top: rem;
+  margin-bottom: 10px;
+  border: 2px solid #c7c6c6;
+  border-radius: 12px;
+  background-color: #dadada;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+.cardInfoInner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  gap: 3rem;
+}
+
+.mainShowCard img {
+  height: 420px;
+  width: px;
+  max-width: 500px;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.mainShowCardInfo {
+  margin-top: 5px;
+  margin-left: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: start;
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem 30px;
+  box-shadow: rgb(0, 0, 0, 0.2) 3px 3px 6px 0px inset;
+  background-color: rgb(241, 239, 239);
+  color: rgb(4, 26, 97);
+  border-radius: 18px;
+  gap: 18px;
+}
+
+.mainShowCardInfo p {
+  width: 30ch;
+}
+.cardInfo h2 {
+  width: fit-content;
+  padding: 1rem 30px;
+  box-shadow: rgb(0, 0, 0, 0.2) 3px 3px 6px 0px inset;
+  background-color: rgb(241, 239, 239);
+  color: rgb(4, 26, 97);
+  border-radius: 18px;
+  gap: 18px;
+}
+
+#back-to-all {
+  padding: 12px;
+  border: 2px solid #fdfdfd;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 90px;
+  background-color: #048080;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  display: inline-block;
+}
+#back-to-all:hover {
+  background-color: #09b9b9;
+  border-color: #929294;
+  border-width: 2px;
+}
+
+.header-title {
+  background-image: url("./levels/example-screenshots/films.png");
+  background-position: 10%;
+  background-repeat: no-repeat;
+  background-color: #048080;
+  color: #ffffff;
+  padding: 50px;
+  text-align: center;
+  height: 7rem;
+  margin-top: 20px;
+  font-size: 80px;
+  border-radius: 8px;
 }
